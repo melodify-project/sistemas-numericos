@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <!--
+        Esta línea indica que estamos trabajando con HTML5.
+    -->
+    <meta charset="UTF-8">
+
+    <!--
+        Permite que la página se adapte correctamente
+        a celulares, tablets y computadoras.
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        Este es el nombre que aparecerá en la pestaña
+        del navegador.
+    -->
+    <title>Sistemas Numéricos</title>
+
+    <!--
+        Aquí conectamos nuestro archivo CSS.
+        El CSS se encargará del diseño de la página.
+    -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         ENCABEZADO DE LA PÁGINA
+         ===================================================== -->
+
+    <header class="encabezado">
+
+        <!-- Nombre principal del proyecto -->
+        <h1>Sistemas Numéricos</h1>
+
+        <!-- Pequeña descripción -->
+        <p>
+            Conversión y operaciones entre sistemas numéricos
+        </p>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+
+    <main class="contenedor">
+
+
+        <!-- =================================================
+             SECCIÓN DE CONVERSIONES
+             ================================================= -->
+
+        <section class="tarjeta">
+
+            <h2>🔄 Conversión de números</h2>
+
+            <p class="descripcion">
+                Convierte un número entre los sistemas
+                binario, octal, decimal y hexadecimal.
+            </p>
+
+
+            <!--
+                Contenedor de las opciones de conversión.
+            -->
+            <div class="fila">
+
+
+                <!-- Sistema de origen -->
+                <div class="campo">
+
+                    <label for="baseOrigen">
+                        Sistema de origen
+                    </label>
+
+                    <select id="baseOrigen">
+
+                        <option value="2">
+                            Binario (Base 2)
+                        </option>
+
+                        <option value="8">
+                            Octal (Base 8)
+                        </option>
+
+                        <option value="10">
+                            Decimal (Base 10)
+                        </option>
+
+                        <option value="16">
+                            Hexadecimal (Base 16)
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Sistema de destino -->
+                <div class="campo">
+
+                    <label for="baseDestino">
+                        Sistema de destino
+                    </label>
+
+                    <select id="baseDestino">
+
+                        <option value="2">
+                            Binario (Base 2)
+                        </option>
+
+                        <option value="8">
+                            Octal (Base 8)
+                        </option>
+
+                        <option value="10">
+                            Decimal (Base 10)
+                        </option>
+
+                        <option value="16">
+                            Hexadecimal (Base 16)
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!--
+                Campo donde el usuario escribirá
+                el número que desea convertir.
+            -->
+            <div class="campo">
+
+                <label for="numeroConversion">
+                    Número
+                </label>
+
+                <input
+                    type="text"
+                    id="numeroConversion"
+                    placeholder="Ejemplo: 101101"
+                >
+
+            </div>
+
+
+            <!-- Botón que realiza la conversión -->
+            <button
+                class="boton principal"
+                onclick="realizarConversion()">
+
+                Convertir
+
+            </button>
+
+
+            <!--
+                Aquí aparecerá el resultado.
+                JavaScript modificará este elemento.
+            -->
+            <div
+                id="resultadoConversion"
+                class="resultado">
+
+                Resultado aparecerá aquí
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECCIÓN DE OPERACIONES BINARIAS
+             ================================================= -->
+
+        <section class="tarjeta">
+
+            <h2>🧮 Operaciones binarias</h2>
+
+            <p class="descripcion">
+                Realiza operaciones matemáticas utilizando
+                números binarios.
+            </p>
+
+
+            <!-- Primer número -->
+            <div class="campo">
+
+                <label for="numero1">
+                    Primer número binario
+                </label>
+
+                <input
+                    type="text"
+                    id="numero1"
+                    placeholder="Ejemplo: 1010"
+                >
+
+            </div>
+
+
+            <!-- Segundo número -->
+            <div class="campo">
+
+                <label for="numero2">
+                    Segundo número binario
+                </label>
+
+                <input
+                    type="text"
+                    id="numero2"
+                    placeholder="Ejemplo: 0011"
+                >
+
+            </div>
+
+
+            <!--
+                Botones para elegir la operación.
+            -->
+
+            <div class="botones-operaciones">
+
+                <button
+                    class="boton"
+                    onclick="realizarOperacion('suma')">
+
+                    ➕
+
+                    Sumar
+
+                </button>
+
+
+                <button
+                    class="boton"
+                    onclick="realizarOperacion('resta')">
+
+                    ➖
+
+                    Restar
+
+                </button>
+
+
+                <button
+                    class="boton"
+                    onclick="realizarOperacion('multiplicacion')">
+
+                    ✖️
+
+                    Multiplicar
+
+                </button>
+
+
+                <button
+                    class="boton"
+                    onclick="realizarOperacion('division')">
+
+                    ➗
+
+                    Dividir
+
+                </button>
+
+            </div>
+
+
+            <!-- Resultado de la operación -->
+            <div
+                id="resultadoOperacion"
+                class="resultado">
+
+                Resultado aparecerá aquí
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SECCIÓN INFORMATIVA
+             ================================================= -->
+
+        <section class="tarjeta informacion">
+
+            <h2>📚 ¿Qué son los sistemas numéricos?</h2>
+
+            <p>
+                Un sistema numérico es una forma de representar
+                cantidades utilizando un conjunto determinado
+                de símbolos y una base.
+            </p>
+
+
+            <div class="sistemas">
+
+                <div class="mini-tarjeta">
+
+                    <strong>Binario</strong>
+
+                    <span>Base 2</span>
+
+                    <p>
+                        Utiliza únicamente los símbolos
+                        0 y 1.
+                    </p>
+
+                </div>
+
+
+                <div class="mini-tarjeta">
+
+                    <strong>Octal</strong>
+
+                    <span>Base 8</span>
+
+                    <p>
+                        Utiliza los números del 0 al 7.
+                    </p>
+
+                </div>
+
+
+                <div class="mini-tarjeta">
+
+                    <strong>Decimal</strong>
+
+                    <span>Base 10</span>
+
+                    <p>
+                        Utiliza los números del 0 al 9.
+                    </p>
+
+                </div>
+
+
+                <div class="mini-tarjeta">
+
+                    <strong>Hexadecimal</strong>
+
+                    <span>Base 16</span>
+
+                    <p>
+                        Utiliza 0-9 y las letras A-F.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            Proyecto de Sistemas Numéricos
+        </p>
+
+        <p>
+            Desarrollado para fines académicos
+        </p>
+
+    </footer>
+
+
+    <!--
+        Al final conectamos nuestro archivo JavaScript.
+
+        Se coloca al final para que primero se cargue
+        todo el contenido HTML.
+    -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

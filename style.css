@@ -1,0 +1,705 @@
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+   ========================================================= */
+
+/*
+    El selector * selecciona TODOS los elementos
+    de la página.
+*/
+* {
+
+    /*
+        Hace que el tamaño de los elementos sea
+        más fácil de controlar.
+    */
+    box-sizing: border-box;
+
+    /*
+        Elimina los márgenes que el navegador
+        coloca automáticamente.
+    */
+    margin: 0;
+
+    /*
+        Elimina los espacios internos predeterminados.
+    */
+    padding: 0;
+
+}
+
+
+/*
+    Configuración general del cuerpo de la página.
+*/
+body {
+
+    /*
+        Tipo de letra utilizado en toda la página.
+    */
+    font-family: Arial, Helvetica, sans-serif;
+
+    /*
+        Fondo de la página.
+    */
+    background: #f4f6f8;
+
+    /*
+        Color principal del texto.
+    */
+    color: #222;
+
+    /*
+        Altura mínima de toda la pantalla.
+    */
+    min-height: 100vh;
+
+}
+
+
+/* =========================================================
+   ENCABEZADO
+   ========================================================= */
+
+.encabezado {
+
+    /*
+        Fondo oscuro del encabezado.
+    */
+    background: #111827;
+
+    /*
+        Color del texto.
+    */
+    color: white;
+
+    /*
+        Espacio interno.
+    */
+    padding: 35px 20px;
+
+    /*
+        Texto centrado.
+    */
+    text-align: center;
+
+}
+
+
+/*
+    Título principal.
+*/
+.encabezado h1 {
+
+    /*
+        Tamaño de la letra.
+    */
+    font-size: 32px;
+
+    /*
+        Espacio debajo del título.
+    */
+    margin-bottom: 10px;
+
+}
+
+
+/*
+    Descripción del encabezado.
+*/
+.encabezado p {
+
+    /*
+        Color ligeramente más claro.
+    */
+    color: #d1d5db;
+
+    /*
+        Tamaño de letra.
+    */
+    font-size: 16px;
+
+}
+
+
+/* =========================================================
+   CONTENEDOR PRINCIPAL
+   ========================================================= */
+
+.contenedor {
+
+    /*
+        Define qué tan ancho puede ser
+        nuestro contenido.
+    */
+    max-width: 900px;
+
+    /*
+        Centra el contenido.
+    */
+    margin: auto;
+
+    /*
+        Espacio interno.
+    */
+    padding: 25px 15px;
+
+}
+
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
+
+.tarjeta {
+
+    /*
+        Fondo blanco.
+    */
+    background: white;
+
+    /*
+        Espacio interno.
+    */
+    padding: 25px;
+
+    /*
+        Bordes redondeados.
+    */
+    border-radius: 18px;
+
+    /*
+        Separación entre tarjetas.
+    */
+    margin-bottom: 25px;
+
+    /*
+        Sombra para darle profundidad.
+    */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+}
+
+
+/*
+    Títulos dentro de las tarjetas.
+*/
+.tarjeta h2 {
+
+    /*
+        Separación debajo del título.
+    */
+    margin-bottom: 10px;
+
+}
+
+
+/*
+    Texto descriptivo.
+*/
+.descripcion {
+
+    /*
+        Color gris.
+    */
+    color: #666;
+
+    /*
+        Separación inferior.
+    */
+    margin-bottom: 20px;
+
+}
+
+
+/* =========================================================
+   FILAS
+   ========================================================= */
+
+.fila {
+
+    /*
+        Utilizamos Flexbox para colocar
+        los elementos uno junto al otro.
+    */
+    display: flex;
+
+    /*
+        Espacio entre elementos.
+    */
+    gap: 15px;
+
+    /*
+        Permite que bajen de línea
+        cuando no hay espacio.
+    */
+    flex-wrap: wrap;
+
+}
+
+
+/*
+    Cada campo ocupa espacio disponible.
+*/
+.fila .campo {
+
+    /*
+        Hace que cada campo pueda crecer.
+    */
+    flex: 1;
+
+}
+
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+.campo {
+
+    /*
+        Separación debajo de cada campo.
+    */
+    margin-bottom: 18px;
+
+}
+
+
+/*
+    Etiquetas de los campos.
+*/
+label {
+
+    /*
+        Hace que la etiqueta ocupe su propia línea.
+    */
+    display: block;
+
+    /*
+        Texto más grueso.
+    */
+    font-weight: bold;
+
+    /*
+        Separación debajo.
+    */
+    margin-bottom: 7px;
+
+}
+
+
+/*
+    Inputs y select.
+*/
+input,
+select {
+
+    /*
+        Hace que ocupen todo el ancho disponible.
+    */
+    width: 100%;
+
+    /*
+        Espacio interno.
+    */
+    padding: 13px;
+
+    /*
+        Tamaño de letra.
+    */
+    font-size: 16px;
+
+    /*
+        Borde.
+    */
+    border: 1px solid #d1d5db;
+
+    /*
+        Bordes redondeados.
+    */
+    border-radius: 10px;
+
+    /*
+        Fondo.
+    */
+    background: white;
+
+}
+
+
+/*
+    Cuando el usuario selecciona un input.
+*/
+input:focus,
+select:focus {
+
+    /*
+        Elimina el borde predeterminado.
+    */
+    outline: none;
+
+    /*
+        Cambia el borde.
+    */
+    border-color: #2563eb;
+
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.boton {
+
+    /*
+        Quita el borde predeterminado.
+    */
+    border: none;
+
+    /*
+        Espacio interno.
+    */
+    padding: 13px 18px;
+
+    /*
+        Tamaño de letra.
+    */
+    font-size: 15px;
+
+    /*
+        Texto en negrita.
+    */
+    font-weight: bold;
+
+    /*
+        Bordes redondeados.
+    */
+    border-radius: 10px;
+
+    /*
+        Cursor de mano en computadora.
+    */
+    cursor: pointer;
+
+    /*
+        Fondo.
+    */
+    background: #e5e7eb;
+
+    /*
+        Color del texto.
+    */
+    color: #111827;
+
+    /*
+        Transición para hacer más suave
+        el cambio al pasar el mouse.
+    */
+    transition: 0.2s;
+
+}
+
+
+/*
+    Efecto al pasar el mouse.
+*/
+.boton:hover {
+
+    /*
+        Hace que el botón se levante ligeramente.
+    */
+    transform: translateY(-2px);
+
+}
+
+
+/*
+    Botón principal.
+*/
+.boton.principal {
+
+    /*
+        Fondo azul.
+    */
+    background: #2563eb;
+
+    /*
+        Texto blanco.
+    */
+    color: white;
+
+    /*
+        Ocupa todo el ancho.
+    */
+    width: 100%;
+
+}
+
+
+/* =========================================================
+   BOTONES DE OPERACIONES
+   ========================================================= */
+
+.botones-operaciones {
+
+    /*
+        Utiliza Flexbox.
+    */
+    display: grid;
+
+    /*
+        Crea cuatro columnas.
+    */
+    grid-template-columns: repeat(4, 1fr);
+
+    /*
+        Separación entre botones.
+    */
+    gap: 10px;
+
+    /*
+        Espacio inferior.
+    */
+    margin-bottom: 20px;
+
+}
+
+
+/* =========================================================
+   RESULTADOS
+   ========================================================= */
+
+.resultado {
+
+    /*
+        Fondo gris claro.
+    */
+    background: #f3f4f6;
+
+    /*
+        Espacio interno.
+    */
+    padding: 18px;
+
+    /*
+        Bordes redondeados.
+    */
+    border-radius: 12px;
+
+    /*
+        Separación superior.
+    */
+    margin-top: 15px;
+
+    /*
+        Permite que los resultados largos
+        no rompan el diseño.
+    */
+    overflow-wrap: break-word;
+
+    /*
+        Texto centrado.
+    */
+    text-align: center;
+
+    /*
+        Letra un poco más gruesa.
+    */
+    font-weight: bold;
+
+}
+
+
+/* =========================================================
+   SISTEMAS NUMÉRICOS
+   ========================================================= */
+
+.sistemas {
+
+    /*
+        Crea una cuadrícula.
+    */
+    display: grid;
+
+    /*
+        Dos columnas.
+    */
+    grid-template-columns: repeat(2, 1fr);
+
+    /*
+        Separación.
+    */
+    gap: 15px;
+
+    /*
+        Espacio superior.
+    */
+    margin-top: 20px;
+
+}
+
+
+/*
+    Tarjetas pequeñas.
+*/
+.mini-tarjeta {
+
+    /*
+        Fondo gris claro.
+    */
+    background: #f3f4f6;
+
+    /*
+        Espacio interno.
+    */
+    padding: 18px;
+
+    /*
+        Bordes redondeados.
+    */
+    border-radius: 12px;
+
+}
+
+
+/*
+    Nombre del sistema.
+*/
+.mini-tarjeta strong {
+
+    /*
+        Hace que aparezca como bloque.
+    */
+    display: block;
+
+    /*
+        Tamaño.
+    */
+    font-size: 18px;
+
+    /*
+        Separación.
+    */
+    margin-bottom: 5px;
+
+}
+
+
+/*
+    Base del sistema.
+*/
+.mini-tarjeta span {
+
+    /*
+        Color azul.
+    */
+    color: #2563eb;
+
+    /*
+        Texto grueso.
+    */
+    font-weight: bold;
+
+}
+
+
+/*
+    Descripción de cada sistema.
+*/
+.mini-tarjeta p {
+
+    /*
+        Separación superior.
+    */
+    margin-top: 8px;
+
+    /*
+        Color gris.
+    */
+    color: #666;
+
+}
+
+
+/* =========================================================
+   PIE DE PÁGINA
+   ========================================================= */
+
+footer {
+
+    /*
+        Fondo oscuro.
+    */
+    background: #111827;
+
+    /*
+        Texto blanco.
+    */
+    color: white;
+
+    /*
+        Texto centrado.
+    */
+    text-align: center;
+
+    /*
+        Espacio interno.
+    */
+    padding: 25px;
+
+}
+
+
+/* =========================================================
+   ADAPTACIÓN PARA CELULARES
+   ========================================================= */
+
+/*
+    Esta parte se ejecuta cuando la pantalla
+    tiene un ancho máximo de 600 píxeles.
+*/
+@media (max-width: 600px) {
+
+
+    /*
+        Reducimos el tamaño del título.
+    */
+    .encabezado h1 {
+
+        font-size: 26px;
+
+    }
+
+
+    /*
+        Las operaciones pasan a dos columnas.
+    */
+    .botones-operaciones {
+
+        grid-template-columns: repeat(2, 1fr);
+
+    }
+
+
+    /*
+        Las tarjetas pequeñas pasan
+        a una sola columna.
+    */
+    .sistemas {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    /*
+        Reducimos ligeramente el espacio
+        de las tarjetas.
+    */
+    .tarjeta {
+
+        padding: 20px;
+
+    }
+
+}
