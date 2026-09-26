@@ -155,7 +155,7 @@ body {
     /*
         Fondo blanco.
     */
-    background: white;
+    background: hwb(149 4% 84%);
 
     /*
         Espacio interno.
