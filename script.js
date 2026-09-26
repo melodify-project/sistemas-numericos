@@ -736,7 +736,7 @@ function realizarOperacion(tipoOperacion) {
         if (decimal2 === 0) {
 
             resultado.innerHTML =
-                "❌ No se puede dividir entre cero.";
+                "No se puede dividir entre cero.";
 
             return;
 
