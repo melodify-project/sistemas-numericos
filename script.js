@@ -492,7 +492,7 @@ function realizarConversion() {
             Mostramos un mensaje de error.
         */
         resultado.innerHTML =
-            "❌ El número no es válido para la base seleccionada.";
+            "El número no es válido para la base seleccionada.";
 
         return;
 
