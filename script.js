@@ -630,7 +630,7 @@ function realizarOperacion(tipoOperacion) {
     if (!validarBinario(numero1)) {
 
         resultado.innerHTML =
-            "❌ El primer número no es binario.";
+            "El primer número no es binario.";
 
         return;
 
