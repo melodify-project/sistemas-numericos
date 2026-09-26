@@ -72,7 +72,6 @@ function validarNumero(numero, base) {
 
     /*
         Recorremos cada carácter del número.
-
         Por ejemplo:
 
         numero = "1011"
@@ -83,6 +82,8 @@ function validarNumero(numero, base) {
         0
         1
         1
+        
+        *por cada caracter del numero*
     */
     for (let caracter of numero) {
 
