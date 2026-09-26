@@ -321,7 +321,7 @@ select {
     /*
         Fondo.
     */
-    background: white;
+    background: hwb(152 7% 64%);
 
 }
 
