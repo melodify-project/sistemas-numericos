@@ -643,7 +643,7 @@ function realizarOperacion(tipoOperacion) {
     if (!validarBinario(numero2)) {
 
         resultado.innerHTML =
-            "❌ El segundo número no es binario.";
+            "El segundo número no es binario.";
 
         return;
 
