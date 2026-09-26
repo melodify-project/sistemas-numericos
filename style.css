@@ -630,12 +630,12 @@ footer {
     /*
         Fondo oscuro.
     */
-    background: #111827;
+    background: #102319;
 
     /*
         Texto blanco.
     */
-    color: white;
+    color: hwb(151 18% 36%);
 
     /*
         Texto centrado.
