@@ -511,6 +511,53 @@ select:focus {
 
 
 /* =========================================================
+   HISTORIAL
+   ========================================================= */
+
+/* Contenedor general del historial. */
+.historial {
+    margin-top: 25px;
+}
+
+/* Texto que explica el historial. */
+.texto-historial {
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+/* Lista donde aparecen los registros. */
+.lista-historial {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cada operación guardada. */
+.item-historial {
+    background: #111916;
+    border: 1px solid #284436;
+    border-radius: 10px;
+    padding: 14px;
+}
+
+/* Descripción de cada operación. */
+.item-historial p {
+    margin-top: 6px;
+    margin-bottom: 5px;
+}
+
+/* Fecha de cada registro. */
+.item-historial small {
+    opacity: 0.7;
+}
+
+/* Botón para borrar el historial. */
+.boton-historial {
+    margin-top: 15px;
+}
+
+
+/* =========================================================
    SISTEMAS NUMÉRICOS
    ========================================================= */
 
