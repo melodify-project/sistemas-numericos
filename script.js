@@ -428,6 +428,281 @@ function convertir(numero, baseOrigen, baseDestino) {
 
 
 /* =========================================================
+   HISTORIAL
+   ========================================================= */
+
+/*
+    En esta sección agregamos el historial
+    de conversiones y operaciones.
+
+    El historial sirve para que el usuario
+    pueda ver lo que ha realizado anteriormente.
+*/
+
+
+/*
+    FUNCIÓN: guardarHistorial
+
+    Esta función guarda una conversión u operación
+    dentro del historial.
+
+    Usamos localStorage para que los registros
+    no desaparezcan cuando se recargue la página.
+
+    localStorage es una memoria del navegador
+    que permite guardar información.
+*/
+function guardarHistorial(tipo, descripcion) {
+
+
+    /*
+        Buscamos el historial que ya estaba guardado.
+
+        JSON.parse convierte el texto guardado
+        nuevamente en una lista que JavaScript
+        puede utilizar.
+
+        Si todavía no existe un historial,
+        utilizamos una lista vacía [].
+    */
+    let historial =
+        JSON.parse(
+            localStorage.getItem("historialSistemasNumericos")
+        ) || [];
+
+
+    /*
+        Agregamos un nuevo registro
+        al principio de la lista.
+
+        unshift() agrega el elemento
+        al inicio de una lista.
+
+        Por eso las operaciones más recientes
+        aparecen primero.
+    */
+    historial.unshift({
+
+        /*
+            Guardamos el tipo de acción.
+
+            Ejemplo:
+
+            "Conversión"
+
+            o
+
+            "Suma binaria"
+        */
+        tipo: tipo,
+
+
+        /*
+            Guardamos una descripción
+            de lo que hizo el usuario.
+        */
+        descripcion: descripcion,
+
+
+        /*
+            Guardamos la fecha y hora
+            en la que se realizó la operación.
+
+            new Date() obtiene la fecha y hora actual.
+        */
+        fecha: new Date().toLocaleString()
+
+    });
+
+
+    /*
+        Conservamos solamente los últimos
+        20 registros.
+
+        slice(0, 20) toma desde el registro 0
+        hasta antes del registro 20.
+
+        De esta manera evitamos que el historial
+        crezca demasiado.
+    */
+    historial = historial.slice(0, 20);
+
+
+    /*
+        Guardamos nuevamente el historial
+        dentro del navegador.
+
+        JSON.stringify convierte la lista
+        en texto para poder guardarla.
+    */
+    localStorage.setItem(
+        "historialSistemasNumericos",
+        JSON.stringify(historial)
+    );
+
+
+    /*
+        Después de guardar el registro,
+        actualizamos el historial que se
+        está mostrando en la página.
+    */
+    mostrarHistorial();
+
+}
+
+
+
+/*
+    FUNCIÓN: mostrarHistorial
+
+    Esta función se encarga de mostrar
+    todos los registros guardados
+    dentro de la página.
+*/
+function mostrarHistorial() {
+
+
+    /*
+        Buscamos el elemento HTML donde
+        aparecerá el historial.
+
+        "listaHistorial" debe coincidir
+        con el id que tenemos en el HTML.
+    */
+    const lista =
+        document.getElementById("listaHistorial");
+
+
+    /*
+        Recuperamos los registros guardados
+        anteriormente en localStorage.
+
+        Si no existe ningún historial,
+        utilizamos una lista vacía.
+    */
+    const historial =
+        JSON.parse(
+            localStorage.getItem("historialSistemasNumericos")
+        ) || [];
+
+
+    /*
+        Si la lista está vacía,
+        mostramos un mensaje.
+    */
+    if (historial.length === 0) {
+
+        lista.innerHTML =
+            "No hay operaciones en el historial.";
+
+        return;
+
+    }
+
+
+    /*
+        map() permite recorrer todos los
+        elementos de la lista.
+
+        Por cada registro creamos un pequeño
+        bloque HTML para mostrar:
+
+        - número del registro
+        - tipo de operación
+        - descripción
+        - fecha y hora
+    */
+    lista.innerHTML = historial.map(
+        (registro, indice) => `
+
+        <div class="item-historial">
+
+            <div>
+
+                <strong>
+                    ${indice + 1}. ${registro.tipo}
+                </strong>
+
+                <p>
+                    ${registro.descripcion}
+                </p>
+
+                <small>
+                    ${registro.fecha}
+                </small>
+
+            </div>
+
+        </div>
+
+    `
+    ).join("");
+
+
+    /*
+        join("") une todos los bloques
+        que creó map().
+
+        El resultado final se coloca
+        dentro de listaHistorial.
+    */
+
+}
+
+
+
+/*
+    FUNCIÓN: limpiarHistorial
+
+    Esta función elimina todos los registros
+    guardados en el historial.
+*/
+function limpiarHistorial() {
+
+
+    /*
+        removeItem() elimina un elemento
+        específico de localStorage.
+
+        En este caso eliminamos solamente
+        nuestro historial.
+    */
+    localStorage.removeItem(
+        "historialSistemasNumericos"
+    );
+
+
+    /*
+        Después de borrarlo,
+        volvemos a mostrar el historial.
+
+        Como ya está vacío,
+        aparecerá el mensaje:
+
+        "No hay operaciones en el historial."
+    */
+    mostrarHistorial();
+
+}
+
+
+
+/*
+    Cuando termina de cargar la página,
+    mostramos automáticamente el historial
+    que ya estaba guardado.
+
+    DOMContentLoaded significa que esperamos
+    a que el HTML termine de cargarse.
+*/
+document.addEventListener(
+    "DOMContentLoaded",
+    mostrarHistorial
+);
+
+
+
+/* =========================================================
    FUNCIÓN: realizarConversion
    ========================================================= */
 
@@ -451,14 +726,18 @@ function realizarConversion() {
         Obtenemos la base de origen.
     */
     let baseOrigen =
-        Number(document.getElementById("baseOrigen").value);
+        Number(
+            document.getElementById("baseOrigen").value
+        );
 
 
     /*
         Obtenemos la base de destino.
     */
     let baseDestino =
-        Number(document.getElementById("baseDestino").value);
+        Number(
+            document.getElementById("baseDestino").value
+        );
 
 
     /*
@@ -466,7 +745,9 @@ function realizarConversion() {
         mostraremos el resultado.
     */
     let resultado =
-        document.getElementById("resultadoConversion");
+        document.getElementById(
+            "resultadoConversion"
+        );
 
 
     /*
@@ -503,7 +784,11 @@ function realizarConversion() {
         Realizamos la conversión.
     */
     let numeroConvertido =
-        convertir(numero, baseOrigen, baseDestino);
+        convertir(
+            numero,
+            baseOrigen,
+            baseDestino
+        );
 
 
     /*
@@ -513,6 +798,34 @@ function realizarConversion() {
         "Resultado: <strong>" +
         numeroConvertido +
         "</strong>";
+
+
+    /*
+        Guardamos la conversión en el historial.
+
+        Se guarda:
+
+        - La palabra "Conversión".
+        - El número original.
+        - La base de origen.
+        - El resultado.
+        - La base de destino.
+    */
+    guardarHistorial(
+
+        "Conversión",
+
+        numero +
+        " (base " +
+        baseOrigen +
+        ") → " +
+
+        numeroConvertido +
+        " (base " +
+        baseDestino +
+        ")"
+
+    );
 
 }
 
@@ -555,7 +868,10 @@ function validarBinario(numero) {
             Si el carácter no es 0 ni 1,
             el número no es binario.
         */
-        if (caracter !== "0" && caracter !== "1") {
+        if (
+            caracter !== "0" &&
+            caracter !== "1"
+        ) {
 
             return false;
 
@@ -597,14 +913,18 @@ function realizarOperacion(tipoOperacion) {
         Obtenemos el primer número.
     */
     let numero1 =
-        document.getElementById("numero1").value.trim();
+        document.getElementById(
+            "numero1"
+        ).value.trim();
 
 
     /*
         Obtenemos el segundo número.
     */
     let numero2 =
-        document.getElementById("numero2").value.trim();
+        document.getElementById(
+            "numero2"
+        ).value.trim();
 
 
     /*
@@ -612,16 +932,20 @@ function realizarOperacion(tipoOperacion) {
         aparecerá el resultado.
     */
     let resultado =
-        document.getElementById("resultadoOperacion");
+        document.getElementById(
+            "resultadoOperacion"
+        );
 
 
     /*
         Convertimos ambos números
         a mayúsculas por seguridad.
     */
-    numero1 = numero1.toUpperCase();
+    numero1 =
+        numero1.toUpperCase();
 
-    numero2 = numero2.toUpperCase();
+    numero2 =
+        numero2.toUpperCase();
 
 
     /*
@@ -655,7 +979,10 @@ function realizarOperacion(tipoOperacion) {
         binario a decimal.
     */
     let decimal1 =
-        baseADecimal(numero1, 2);
+        baseADecimal(
+            numero1,
+            2
+        );
 
 
     /*
@@ -663,7 +990,10 @@ function realizarOperacion(tipoOperacion) {
         binario a decimal.
     */
     let decimal2 =
-        baseADecimal(numero2, 2);
+        baseADecimal(
+            numero2,
+            2
+        );
 
 
     /*
@@ -671,6 +1001,7 @@ function realizarOperacion(tipoOperacion) {
         el resultado decimal.
     */
     let resultadoDecimal;
+
 
 
     /* =====================================================
@@ -687,6 +1018,7 @@ function realizarOperacion(tipoOperacion) {
             decimal1 + decimal2;
 
     }
+
 
 
     /* =====================================================
@@ -706,11 +1038,14 @@ function realizarOperacion(tipoOperacion) {
     }
 
 
+
     /* =====================================================
        MULTIPLICACIÓN
        ===================================================== */
 
-    else if (tipoOperacion === "multiplicacion") {
+    else if (
+        tipoOperacion === "multiplicacion"
+    ) {
 
 
         /*
@@ -722,16 +1057,21 @@ function realizarOperacion(tipoOperacion) {
     }
 
 
+
     /* =====================================================
        DIVISIÓN
        ===================================================== */
 
-    else if (tipoOperacion === "division") {
+    else if (
+        tipoOperacion === "division"
+    ) {
 
 
         /*
             Primero verificamos que el divisor
             no sea cero.
+
+            Esto evita un error matemático.
         */
         if (decimal2 === 0) {
 
@@ -746,13 +1086,24 @@ function realizarOperacion(tipoOperacion) {
         /*
             División entera para obtener
             el cociente.
+
+            Math.floor() elimina la parte decimal.
         */
         let cociente =
-            Math.floor(decimal1 / decimal2);
+            Math.floor(
+                decimal1 / decimal2
+            );
 
 
         /*
             El operador % obtiene el residuo.
+
+            Ejemplo:
+
+            10 % 3 = 1
+
+            Porque 3 cabe tres veces
+            en 10 y sobra 1.
         */
         let residuo =
             decimal1 % decimal2;
@@ -763,7 +1114,10 @@ function realizarOperacion(tipoOperacion) {
             nuevamente a binario.
         */
         let cocienteBinario =
-            decimalABase(cociente, 2);
+            decimalABase(
+                cociente,
+                2
+            );
 
 
         /*
@@ -771,23 +1125,67 @@ function realizarOperacion(tipoOperacion) {
             nuevamente a binario.
         */
         let residuoBinario =
-            decimalABase(residuo, 2);
+            decimalABase(
+                residuo,
+                2
+            );
 
 
         /*
             Mostramos el resultado.
         */
         resultado.innerHTML =
+
             "Cociente: <strong>" +
+
             cocienteBinario +
+
             "</strong><br>" +
+
             "Residuo: <strong>" +
+
             residuoBinario +
+
             "</strong>";
 
+
+        /*
+            Guardamos la división
+            en el historial.
+
+            En este caso guardamos por separado:
+
+            - número 1
+            - número 2
+            - cociente
+            - residuo
+        */
+        guardarHistorial(
+
+            "División binaria",
+
+            numero1 +
+            " ÷ " +
+            numero2 +
+
+            " → Cociente: " +
+            cocienteBinario +
+
+            ", Residuo: " +
+            residuoBinario
+
+        );
+
+
+        /*
+            Terminamos la función aquí
+            porque la división ya mostró
+            su propio resultado.
+        */
         return;
 
     }
+
 
 
     /*
@@ -795,6 +1193,7 @@ function realizarOperacion(tipoOperacion) {
         nuevamente a binario.
     */
     let resultadoBinario;
+
 
 
     /*
@@ -812,8 +1211,13 @@ function realizarOperacion(tipoOperacion) {
             el signo negativo.
         */
         resultadoBinario =
+
             "-" +
-            decimalABase(Math.abs(resultadoDecimal), 2);
+
+            decimalABase(
+                Math.abs(resultadoDecimal),
+                2
+            );
 
     }
 
@@ -826,17 +1230,72 @@ function realizarOperacion(tipoOperacion) {
             simplemente lo convertimos.
         */
         resultadoBinario =
-            decimalABase(resultadoDecimal, 2);
+            decimalABase(
+                resultadoDecimal,
+                2
+            );
 
     }
+
 
 
     /*
         Mostramos el resultado final.
     */
     resultado.innerHTML =
+
         "Resultado: <strong>" +
+
         resultadoBinario +
+
         "</strong>";
+
+
+
+    /*
+        Creamos un objeto para relacionar
+        el nombre interno de la operación
+        con el nombre que aparecerá
+        en el historial.
+
+        Por ejemplo:
+
+        "suma" → "Suma binaria"
+    */
+    const nombresOperaciones = {
+
+        suma: "Suma binaria",
+
+        resta: "Resta binaria",
+
+        multiplicacion: "Multiplicación binaria"
+
+    };
+
+
+
+    /*
+        Guardamos la operación realizada.
+
+        Se guarda:
+
+        número 1
+        operación
+        número 2
+        resultado
+    */
+    guardarHistorial(
+
+        nombresOperaciones[tipoOperacion],
+
+        numero1 +
+        " → " +
+        tipoOperacion +
+        " → " +
+        numero2 +
+        " = " +
+        resultadoBinario
+
+    );
 
 }
